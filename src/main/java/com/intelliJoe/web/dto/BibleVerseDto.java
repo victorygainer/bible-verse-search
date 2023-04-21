@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BibleVerseDto {
-    private Long idx;
+    private int idx;
     private Integer cate;
     private Integer book;
     private Integer chapter;

@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class BibleVerse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
+    private int idx;
 
     @Column(name = "cate")
     private Integer cate;

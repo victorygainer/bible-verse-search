@@ -2,13 +2,16 @@ package com.intelliJoe.entity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@SpringBootTest
+@DataJpaTest
+@Transactional
 class BibleVerseRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
@@ -20,6 +23,7 @@ class BibleVerseRepositoryTest {
     public void testFindByIdx() {
         // given
         BibleVerse verse = new BibleVerse();
+        verse.setIdx(1);
         verse.setCate(1);
         verse.setBook(1);
         verse.setChapter(1);
@@ -32,7 +36,7 @@ class BibleVerseRepositoryTest {
         entityManager.flush();
 
         // when
-        BibleVerse found = repository.findById(verse.getIdx()).orElse(null);
+        BibleVerse found = repository.findById((long) verse.getIdx()).orElse(null);
 
         // then
         assertThat(found.getSentence())
