@@ -1,17 +1,3 @@
--- create table bible_verse
--- (
---     idx         bigint auto_increment
---         primary key,
---     book        int          null,
---     cate        int          null,
---     chapter     int          null,
---     long_label  varchar(255) null,
---     paragraph   int          null,
---     sentence    text         null,
---     short_label varchar(255) null,
---     testament   varchar(255) null
--- );
-
 CREATE TABLE IF NOT EXISTS `bible_verse` (
   `idx` int(11) NOT NULL AUTO_INCREMENT,
   `cate` int(11) NOT NULL,

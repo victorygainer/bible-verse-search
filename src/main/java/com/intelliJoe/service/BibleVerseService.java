@@ -1,32 +1,34 @@
 package com.intelliJoe.service;
 
-import com.intelliJoe.web.dto.BibleVerseDto;
 import com.intelliJoe.entity.BibleVerse;
 import com.intelliJoe.entity.BibleVerseRepository;
+import com.intelliJoe.web.dto.BibleVerseResponseDto;
+import lombok.RequiredArgsConstructor;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class BibleVerseService {
     private final BibleVerseRepository bibleVerseRepository;
 
-    public BibleVerseService(BibleVerseRepository bibleVerseRepository) {
-        this.bibleVerseRepository = bibleVerseRepository;
-    }
-
-    public List<BibleVerseDto> findAll() {
-        List<BibleVerse> bibleVerses = bibleVerseRepository.findAll();
+    public List<BibleVerseResponseDto> searchBySentence(String json) {
+        String keyword = "";
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            keyword = jsonObject.getString("keyword");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        List<BibleVerse> bibleVerses = bibleVerseRepository.findBySentenceContaining(keyword);
         return bibleVerses.stream()
-                .map(BibleVerseDto::new)
+                .map(BibleVerseResponseDto::new)
                 .collect(Collectors.toList());
     }
-
-    public BibleVerseDto findByIdx(Long idx) {
-        Optional<BibleVerse> bibleVerse = bibleVerseRepository.findById(idx);
-        return bibleVerse.map(BibleVerseDto::new).orElse(null);
-    }
-
 }
+
+
