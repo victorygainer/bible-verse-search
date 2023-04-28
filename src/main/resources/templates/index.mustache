@@ -1,14 +1,14 @@
 {{>layout/header}}
 
-<div class="container mt-4">
-    <div class="row mb-3">
-        <div class="col-md-8">
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center mt-4" style="height: 80vh;">
+    <h1 class="text-center mb-4" style="font-size: 3rem;">개역개정 성경 구절 검색</h1>
+    <div class="row">
+        <div class="col-md-12">
             <div class="input-group">
-                <input type="text" class="form-control" id="searchKeyword" placeholder="검색어를 입력하세요">
+                <input type="text" class="form-control" id="searchKeyword" style="width:400px" placeholder="검색어를 입력하세요">
                 <button type="button" class="btn btn-primary" id="btnSearch">검색</button>
             </div>
         </div>
     </div>
 </div>
-
 {{>layout/footer}}

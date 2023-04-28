@@ -1,0 +1,31 @@
+{{>layout/header}}
+
+<div class="container mt-4">
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <div class="input-group">
+                <input type="text" class="form-control" id="searchKeyword" placeholder="검색어를 입력하세요">
+                <button type="button" class="btn btn-primary" id="btnSearch">검색</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8" id="search-result">
+            <div class="card">
+                <div class="card-header">검색 결과</div>
+                <ul class="list-group list-group-flush" id="search-result-list">
+                    {{#bibleVerses}}
+                        <li class="list-group-item">
+                            <p>{{longLabel}} {{chapter}}:{{paragraph}}</p>
+                            <p>{{sentence}}</p>
+                        </li>
+                    {{/bibleVerses}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{>layout/footer}}
